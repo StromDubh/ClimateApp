@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Countries</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">Search for a country</ion-label>
+    <ion-input [(ngModel)]="searchQuery"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="searchCountries()" [disabled]="!searchQuery.trim()">
+    Search
+  </ion-button>
+
+  <ion-list *ngIf="countries.length > 0; else noResults">
+    <ion-card *ngFor="let country of countries">
+      <ion-card-header>
+        <ion-card-title class="ion-text-wrap">
+          <ion-avatar slot="start">
+            <img *ngIf="country.flags?.png" [src]="country.flags.png" alt="Flag">
+          </ion-avatar>
+          {{ country.name?.official || 'Unnamed Country' }}
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button expand="block" [routerLink]="['/news']" [queryParams]="{ country: country.name?.common }">
+          News
+        </ion-button>
+        <ion-button expand="block" [routerLink]="['/weather']" [queryParams]="{ country: country.name?.common }">
+          Weather
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ng-template #noResults>
+    <div class="ion-text-center ion-padding">
+      <p *ngIf="searchQuery">No countries found for "{{ searchQuery }}"</p>
+      <p *ngIf="!searchQuery">Search for a country to begin.</p>
+    </div>
+  </ng-template>
+</ion-content>

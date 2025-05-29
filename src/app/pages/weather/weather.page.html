@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/countries"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Weather for {{ country }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="weather">
+    <h2>{{ weather.name }}</h2>
+    <p><strong>Temperature:</strong> {{ weather.main.temp }}°{{ getUnitSymbol() }}</p>
+    <p><strong>Condition:</strong> {{ weather.weather[0].description }}</p>
+    <p><strong>Humidity:</strong> {{ weather.main.humidity }}%</p>
+    <p><strong>Wind:</strong> {{ weather.wind.speed }} m/s

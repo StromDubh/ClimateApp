@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/countries"></ion-back-button>
+    </ion-buttons>
+    <ion-title>News for {{ country }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="articles.length">
+    <ion-item *ngFor="let article of articles" lines="none">
+      <ion-label>
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.description }}</p>
+        <small>{{ article.source.name }}</small>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="!articles.length">
+    <p>No news found.</p>
+  </div>
+</ion-content>
