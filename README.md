@@ -21,7 +21,7 @@ ClimateApp is a mobile-friendly application built using Ionic Angular that allow
 
 ---
 
-## 🚀 Technologies Used
+## Technologies Used
 
 - **Ionic Angular** (standalone components)
 - **TypeScript & HTML5**
